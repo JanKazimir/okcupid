@@ -82,8 +82,42 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ### Splitting into parts
+    """)
+    return
+
+
 @app.cell
-def _():
+def _(df):
+    wave1_part = []
+    wave2_part = []
+    wave3_part = []
+    others_part = []
+    for column in df.columns:
+        if column.startswith("w1") | column.startswith("p17"):
+            wave1_part.append(column)
+        elif column.startswith("w2")| column.startswith("p18")| column.startswith("p19")| column.startswith("p20"):
+            wave2_part.append(column)
+        elif column.startswith("w3"):
+            wave3_part.append(column)
+        else:
+            others_part.append(column)
+
+    df_w1 = df[wave1_part+others_part]
+    df_w2 = df[wave2_part+others_part]
+    df_w3 = df[wave3_part+others_part]
+
+
+
+    return (df_w2,)
+
+
+@app.cell
+def _(df_w2):
+    df_w2
     return
 
 
