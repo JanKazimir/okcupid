@@ -38,16 +38,6 @@ how to handle categorical that are already divided one hot?
 w2_surveyed : either yes or no. If no, drop, it's an empty record.
 
 
-#### **To drop:**
-
-WEIGHT 
-'w2_weight_genpop',
- 'w2_weight_LGB',
- 'w2_combo_weight',
- 'w2_attrition_adj_weights',
-
-ADMIN 
- 'w2_month_of_survey',
 
 
 #### To change
@@ -72,7 +62,6 @@ w1_ppincimp byte %8.0g PPINCIMP Household Income
 w1_ppincimp_cat byte %10.0g w1_ppincimp_cat w1 ppincimp in 4 categories
 w1_same_sex_couple
 w1_same_sex_couple_gender
-
 w1_ppmarit : marital status
 
 w1_section : section 1: partnered adults, section 2: adults with past partners, never partnered: not surveyed in wave 1 but included for backround vars and follow-up
@@ -81,11 +70,21 @@ w1_section : section 1: partnered adults, section 2: adults with past partners, 
 
 
 **Q24** : how met
-q_24
-w1_q24_metonline_no_phone_apps : met online excluding phone
-w1_how_met_online interp of w1_q24 if either_internet_adjusted==1
+summaries or recaps:
+w1_q24_met_online
+w1_either_internet_adjusted : met online, combo of q24 and q32
 
-To collapse q24: 
+
+w1_how_met_online interp of w1_q24 if either_internet_adjusted==1
+w1_q32 : did you use an internet service to meet? summary column
+
+
+details : not relevant
+w1_q24_metonline_no_phone_apps : met online excluding phone
+
+
+
+To collapse for q24: 
 met through
 - relation : friend, coworker, family, intermediary, neighbour etc... 
   - w1_q24_R_cowork, w1_q24_R_friend, w1_q24_R_family, w1_q24_R_sig_other, w1_q24_R_neighbor, w1_q24_P_cowork, w1_q24_P_friend, w1_q24_P_family, w1_q24_P_sig_other, w1_q24_P_neighbor, w1_q24_I_cowork, w1_q24_I_friend, w1_q24_I_family, w1_q24_I_sig_other, w1_q24_I_neighbor
@@ -110,9 +109,41 @@ to meet partner?
 w1_q32_met_online_phone_apps
 
 
+**later waves**:
 
-**Q32** : rel stability
+**Time of meetings:**
+w3_Q21A_year : in what Year did you first meet partner_name?
+w3_Q21A_month : [Month] In what Year and Month did you first meet [Partner_Name]?
+w3_Q21B_year: [Year] In what year and month did your romantic relationship with [Partner_Name] begin?
+w3_Q21B_month : [Month] In what year and month did your romantic relationship with [Partner_Name] begin?
 
+
+w3_Q21C_year int %8.0g [Year] In what year and month did
+you first live together with
+[Partner_Name]?
+w3_Q21C_month byte %9.0g months [Month] In what year and month
+did you first live together
+with [Partner_Name]?
+w3_Q21D_year int %8.0g [Year] In what Year and Month did
+you marry [Partner_Name]?
+w3_Q21D_month byte %9.0g months [Month] In what Year and Month
+did you marry [Partner_Name]?
+
+_Break up_
+w3_Q21E_year int %8.0g year of breakup new relationship
+How Couples Meet and Stay Together public data v 2.2 codebook Page 7
+reported in w3
+w3_Q21E_month byte %9.0g months month of breakup new relationship
+reported in w3
+
+
+_Durations_
+w3_month_rel_started months after jan 1960 when relationship started for rels active in w3, from q21b
+w3_relationship_duration_mos : duration in months of relationships still intact at wave 3
+w3_relationship_duration_yrs : duration in years of relationships still intact at wave 3
+
+
+**Q32** : rel stability, quaity
 
 
 w1_q34 byte %9.0g Q34 how would you describe the
@@ -126,6 +157,17 @@ w1_q34 with collapsed categories
 w1_how_met_online : interp of w1_q24 if either_internet_adjusted==1
 w1_max_relation_status : highest status this relationship has achieved
 
+
+w1_age_when_met float
+w1_time_from_met_to_rel
+w1_year_fraction_first_cohab
+w1_time_from_rel_to_cohab
+
+w1_weekly_sex_frequency
+
+durations:
+w1_year_fraction_met = = w1_q21a_year+(( w1_q21a_month-0.5)/12)
+w1_year_fraction_relstart = w1_q21b_year+(( w1_q21b_month-0.5)/12)
 
 Extra
 w1_sex_frequency : frequency of sex
@@ -146,10 +188,30 @@ w1_q20 byte %8.0g Q20 ever lived with partner?
 w1_q21a_year int %8.0g year subject first met partner
 w1_q21a_month byte %9.0g Q21A_MON month subject first met partner
 
+**later waves**:
+w3_rel_qual
+w3_sex_frequency
+w3_weekly_sex_frequency
+w3_how_many
+w3_p_monogamy
+w3_monogamy
+w3_relationship_end_combo
+w3_breakup_year float
+w3_breakup_month
+w3_partner_passaway_year
+w3_partner_passaway_month
+w3_new_relationship
+
+
+
+
+
+
 **Changes**: 
 change_in_rel_quality_w1w2
-
 w3_relationship_end_combo
+w1w2_sex_freq_diff
+
 
 
 
