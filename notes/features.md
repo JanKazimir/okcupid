@@ -1,13 +1,26 @@
 ## Features to Use:
 
 
-_ADMIN & DEMO_
-caseid_new : id number or subject
+_ADMIN & DEMO_ Let's ignore race it's too complicated
+caseid_new : id number or subject 
 w1_section : in rel or not?
+
+RESPONDANT DEMO
+w1_ppage (age)
 w1_ppgender : gender
+w1_ppeducat (education categories)
+w1_partyid7 : party identification (7 categories)
+w1_ppmsacat : (metro residence)
+
+PARTNER DEMO (not for clustering)
+w1_q9 : partner's age
+w1_q10 : partner educations !!needs reworking !!
+w1_q12 (partner’s political party ID)
+
+
+COUPLE:
 w1_same_sex_couple : gay couple or not 
-w1_ppincimp_cat byte %10.0g w1_ppincimp_cat w1 ppincimp in 4 categories
-w1_same_sex_couple_gender
+w1_ppincimp_cat :  HH income in 4 categories
 
 
 _WEIGHTS_ 
@@ -26,10 +39,9 @@ w1_weight_combo_freqwt: frequency weight version of weight_combo
 
 
 
-
-
 **HOW MET**
 w1_q32 : online + how and not online
+!! needs work!
 
 _ONLINE:_
 w1_q24_met_online : doesn't match the others.
@@ -53,8 +65,6 @@ w1_relate_duration_in2017_years
 w1_q21b_year : Year romantic relationship began
 w1_q21b_month: month romantic relationship began
 
-w1_q21e_year : year of breakup
-w1_q21e_month : Q21E_2_M month of breakup
 
 _BREAKUP_
 w1_q21e_year :  year of breakup
@@ -62,6 +72,7 @@ w1_q21e_month : month of breakup
 w1_q21f_year : year partner died
 w1_q21f_month : month partner died
 
+w1_who_breakup_combo (who wanted the breakup)
 
 _REL DURATION_
 
@@ -77,4 +88,18 @@ w1_weekly_sex_frequency
 
 
 
-**Final selection:**
+_ANDREY_
+w1_q34   -> w2_rel_qual_combo -> w3_rel_qual
+w1_relate_duration_in2017_years -> w2_relationship_duration -> w3_relationship_duration_years
+w1_q19 -> w2_cohab -> w3_cohab
+w1_married -> w2_married -> w3_married
+
+
+**Final selection for clustering:**
+needs work on q32!
+w1_partnership_status = collapse several others. Let's not use it.
+df_cluster = df[['caseid_new', 'w1_section', 'w1_ppage','w1_ppgender','w1_ppeducat','w1_partyid7','w1_ppmsacat', 'w1_same_sex_couple','w1_ppincimp_cat','w1_q32','w1_year_fraction_relstart','w1_max_relation_status','w1_weekly_sex_frequency', 'w1_q34', 'w1_relate_duration_in2017_years', 'w1_q19', 'w1_married']]
+
+
+Imporved with andrey:
+df_cluster = df[['caseid_new', 'w1_section', 'w1_ppage','w1_ppgender','w1_ppeducat','w1_partyid7','w1_ppmsacat', 'w1_same_sex_couple','w1_ppincimp_cat','w1_q32','w1_max_relation_status','w1_weekly_sex_frequency', 'w1_q34', 'w1_relate_duration_in2017_years', 'w1_q19', 'w1_married']]
