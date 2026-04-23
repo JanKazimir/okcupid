@@ -1,3 +1,47 @@
+## New notes
+The modeling from Andrey seems solid. I can't see many flaws for now. I want to do it too, but we have a presentation to do, so there's that. 
+I want to do something productive. 
+
+What could be done, aside from what has been done already.
+
+So what should i do ? 
+I can focus on the presentation. Find interesting thing to talk about. 
+
+I want to do some coding, some clustering and ML. It's a lot of work, and we don't have much time. I could tweak Andrey. 
+I want to understand and visualize the clusters a bit better, that would be nice. 
+
+
+**Notes to Andrey**: forgot to include party id. Small detail. We could use see if we have a difference when we include it. 
+
+
+
+#### What could be usefull : 
+- see the clusters somehow. 
+- start writing the presentation
+- 
+
+- We have the predictors of rel stab : cluster
+What predicts relationship stability, by relationship time.
+Which is to say, what predicts a relationship that last more than 1 year? More than 3? More than 5? More than 10? 20? 30+?
+This is interesting actually.
+
+
+
+Could we power bi something together? maybe see something interactively? maybe reproduce the way people met through time, but more condensed?
+
+_QUESTIONS_: 
+- Who wants to break up more? men or women?
+- What advice to give the dating website? 
+
+- Does similarity matter?
+Small age difference, same salaries, political leanings, education, etc...
+
+- Effect of kids on sex.
+
+
+
+
+# Old notes
 
 
 Columns that do no start with w1, w2, or w3:
@@ -425,4 +469,6 @@ w1_friend_connect_4_all
 byte %8.0g yesno no prior connection between
 subject's friends and partner's
 friends
+
+
 
